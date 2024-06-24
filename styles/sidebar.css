@@ -1,0 +1,57 @@
+.sidebar {
+  height: 100vh;
+  width: 250px;
+  margin-left: 50px;
+  overflow: hidden;
+
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+}
+
+.books {
+  --offset-val: -50%;
+
+  margin-top: 50vh;
+  
+  text-align: center;
+  transition: all 0.25s linear;
+}
+
+.move {
+  transform: translateY(var(--offset-val));
+}
+
+.book {
+  --expand-height: 300px;
+
+  padding: 30px;
+  height: 86px;
+  border-bottom: 1px solid white;
+
+  transition: height 0.5s ease-in-out 0.25s;
+}
+
+.book:first-child {
+  border-top: 1px solid white;
+}
+
+.expand {
+  height: translate(var(--expand-height));
+}
+
+.book-title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#special {
+  position: fixed;
+  width: 250px;
+  height: 300px;
+  top: 50vh;
+  margin-left: 175px;
+
+  background-color: red;
+  transform: translate(-50%, -50%);
+}

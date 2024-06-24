@@ -15,7 +15,10 @@
 }
 
 body {
-  font-family: var(--main-font, system-ui);
+  background-color: black;
+  color: white;
+
+  font-family: "Roboto Serif", serif;
   font-weight: normal;
   font-style: normal;
   line-height: 1.5;
