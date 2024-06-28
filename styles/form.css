@@ -61,11 +61,22 @@ input, #desc {
   background-color: black;
 }
 
-input {
+input[type="text"] {
+  height: 50px;
+  font-weight: 200;
+  padding-left: 10px;
+}
+
+#pages {
   height: 30px;
+  padding-right: 10px;
+  text-align: right;
 }
 
 #desc {
+  font-weight: 200;
+  padding: 10px;
+
   overflow: auto;
   resize: none;
 }
