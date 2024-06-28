@@ -1,0 +1,16 @@
+body {
+  min-width: 1200px;
+  overflow-y: hidden;
+
+  background-color: black;
+  color: white;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+}
+
+.hidden {
+  display: none;
+}

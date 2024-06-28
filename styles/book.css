@@ -1,0 +1,103 @@
+.book-section {
+  position: relative;
+}
+
+.book-header {
+  position: absolute;
+  top: 200px;
+  left: 0;
+}
+
+.book-header > div {
+  display: flex;
+  align-items: baseline;
+  gap: 30px;
+}
+
+.book-header .book-title {
+  font-weight: 200;
+  font-size: 3rem;
+}
+
+.book-header img {
+  width: 25px;
+  height: 25px;
+}
+
+.book-body {
+  padding-top: 350px;
+}
+
+.book-desc {
+  font-size: 1.5rem;
+}
+
+.progress-section {
+  position: relative;
+  margin-top: 100px;
+  height: 75px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.progress-text {
+  position: absolute;
+  top: 0;
+
+  font-weight: 300;
+  font-size: 1.5rem;
+
+  transform: translate(-50%, 0);
+}
+
+input[type="range"] {
+  --c: white; /* active color */
+  --g: 0px; /* the gap */
+  --l: 1px; /* line thickness*/
+  --s: 30px; /* thumb size*/
+  
+  width: 100%;
+  height: var(--s); /* needed for Firefox*/
+  -webkit-appearance :none;
+  -moz-appearance :none;
+  appearance :none;
+  background: none;
+  cursor: pointer;
+  overflow: hidden;
+  border: none;
+}
+
+/* chromium */
+input[type="range" i]::-webkit-slider-thumb{
+  height: var(--s);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  box-shadow: 0 0 0 var(--l) inset var(--c);
+  border-image: linear-gradient(90deg,var(--c) 50%,#888 0) 0 1/calc(50% - var(--l)/2) 100vw/0 calc(100vw + var(--g));
+  -webkit-appearance: none;
+  appearance: none;
+
+  background-color: white;
+}
+/* Firefox */
+input[type="range"]::-moz-range-thumb {
+  height: var(--s);
+  width: var(--s);
+  background: none;
+  border-radius: 50%;
+  box-shadow: 0 0 0 var(--l) inset var(--c);
+  border-image: linear-gradient(90deg,var(--c) 50%,#888 0) 0 1/calc(50% - var(--l)/2) 100vw/0 calc(100vw + var(--g));
+  -moz-appearance: none;
+  appearance: none;
+
+  background-color: white;
+}
+
+.completed-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 35px;
+}
