@@ -6,6 +6,9 @@
   position: relative;
   height: 100vh;
   margin-right: 100px;
+
+  opacity: 100%;
+  transition: all 1s linear;
 }
 
 .form-section > h1 {
