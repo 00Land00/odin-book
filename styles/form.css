@@ -1,0 +1,126 @@
+.main {
+  margin: 0 100px;
+}
+
+.form-section {
+  position: relative;
+  height: 100vh;
+  margin-right: 100px;
+
+  opacity: 100%;
+  transition: all 1s linear;
+}
+
+.form-section > h1 {
+  position: absolute;
+  top: 150px;
+  left: 0;
+
+  font-weight: 200;
+  font-size: 3rem;
+}
+
+.book-form {
+  padding-top: 250px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.book-form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.book-form > .extra-fields {
+  flex-direction: row;
+  align-content: center;
+  gap: 40px;
+}
+
+.extra-fields > div {
+  display: flex;
+  gap: 8px;
+}
+
+.extra-fields label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#pages {
+  width: 100px;
+}
+
+input, #desc {
+  color: white;
+  border: 1px solid white;
+  background-color: black;
+}
+
+input[type="text"] {
+  height: 50px;
+  font-weight: 200;
+  padding-left: 10px;
+}
+
+#pages {
+  height: 30px;
+  padding-right: 10px;
+  text-align: right;
+}
+
+#desc {
+  font-weight: 200;
+  padding: 10px;
+
+  overflow: auto;
+  resize: none;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  background-color: black;
+  border: 1px solid white;
+
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  
+  transform: scale(0);
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+#submit {
+  padding: 10px;
+
+  background-color: white;
+}
+
+#submit:hover {
+  background-color: rgb(185, 185, 185);
+}
+
+#submit:active {
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+}
+
+#desc:user-invalid, input[type="text"]:user-invalid {
+  border-color: red;
+}

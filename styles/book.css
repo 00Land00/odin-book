@@ -1,0 +1,181 @@
+.book-section {
+  position: relative;
+  min-height: 100vh;
+
+  opacity: 100%;
+  transition: all 1s linear;
+}
+
+.add-btn {
+  position: fixed;
+  margin: 20px;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+
+  cursor: pointer;
+}
+
+.book-header {
+  position: absolute;
+  top: 150px;
+  left: 0;
+}
+
+.book-header > div {
+  display: flex;
+  align-items: baseline;
+  gap: 30px;
+}
+
+.book-header .book-title {
+  font-weight: 200;
+  font-size: 3rem;
+}
+
+.book-header img {
+  width: 25px;
+  height: 25px;
+}
+
+.book-del {
+  cursor: pointer;
+}
+
+.book-body {
+  padding-top: 300px;
+}
+
+.book-desc {
+  font-size: 1.5rem;
+}
+
+.progress-section {
+  position: relative;
+  margin-top: 100px;
+  height: 75px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.progress-value {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  font-weight: 300;
+  font-size: 1.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+
+  transform: translate(-50%, 0);
+}
+
+input[type="range"] {
+  --c: white; /* active color */
+  --g: 0px; /* the gap */
+  --l: 1px; /* line thickness*/
+  --s: 30px; /* thumb size*/
+  
+  width: 100%;
+  height: var(--s); /* needed for Firefox*/
+  -webkit-appearance :none;
+  -moz-appearance :none;
+  appearance :none;
+  background: none;
+  cursor: pointer;
+  overflow: hidden;
+  border: none;
+}
+
+/* chromium */
+input[type="range" i]::-webkit-slider-thumb{
+  height: var(--s);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  box-shadow: 0 0 0 var(--l) inset var(--c);
+  border-image: linear-gradient(90deg,var(--c) 50%,#888 0) 0 1/calc(50% - var(--l)/2) 100vw/0 calc(100vw + var(--g));
+  -webkit-appearance: none;
+  appearance: none;
+
+  background-color: white;
+}
+
+/* Firefox */
+input[type="range"]::-moz-range-thumb {
+  height: var(--s);
+  width: var(--s);
+  background: none;
+  border-radius: 50%;
+  box-shadow: 0 0 0 var(--l) inset var(--c);
+  border-image: linear-gradient(90deg,var(--c) 50%,#888 0) 0 1/calc(50% - var(--l)/2) 100vw/0 calc(100vw + var(--g));
+  -moz-appearance: none;
+  appearance: none;
+
+  background-color: white;
+}
+
+.completed-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 35px;
+}
+
+.completed-section * {
+  cursor: pointer;
+}
+
+dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 580px;
+  padding: 35px 45px 20px 45px;
+  
+  color: black;
+  background-color: white;
+
+  font-size: 1.3rem;
+  line-height: 1.6rem;
+  text-align: center;
+
+  transform: translate(-50%, -50%);
+}
+
+dialog::backdrop {
+  background-color: black;
+  opacity: 0.7;
+}
+
+dialog > div {
+  display: flex;
+  gap: 10px;
+
+  margin-top: 35px;
+}
+
+dialog > div > button {
+  flex: 1;
+  padding-top: 7px;
+  padding-bottom: 7px;
+
+  background-color: white;
+  color: black;
+
+  font-size: 1.1rem;
+
+  border-radius: 0;
+  border: 1px solid black;
+
+  cursor: pointer;
+}
+
+#confirm {
+  background-color: red;
+  color: white;
+  border: 1px solid red;
+}
