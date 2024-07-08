@@ -90,7 +90,13 @@
               nulla tempore vero amet!
             </div>
             <div class="progress-section">
-              <input type="range" class="progress-bar" min="0" max="100" value="0" />
+              <input
+                type="range"
+                class="progress-bar"
+                min="0"
+                max="100"
+                value="0"
+              />
               <output class="progress-value"></output>
             </div>
             <div class="completed-section">
@@ -98,6 +104,13 @@
               <label for="complete">Completed</label>
             </div>
           </div>
+          <dialog class="delete-modal">
+            <p>Are you sure you want to delete this book from your library?</p>
+            <div>
+              <button type="button" id="confirm">Yes</button>
+              <button type="button" id="cancel">No</button>
+            </div>
+          </dialog>
         </div>
       </div>
     </div>

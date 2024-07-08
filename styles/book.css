@@ -1,5 +1,6 @@
 .book-section {
   position: relative;
+  min-height: 100vh;
 
   opacity: 100%;
   transition: all 1s linear;
@@ -36,6 +37,10 @@
 .book-header img {
   width: 25px;
   height: 25px;
+}
+
+.book-del {
+  cursor: pointer;
 }
 
 .book-body {
@@ -118,4 +123,54 @@ input[type="range"]::-moz-range-thumb {
   align-items: center;
   gap: 10px;
   margin-top: 35px;
+}
+
+.completed-section * {
+  cursor: pointer;
+}
+
+dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 580px;
+  padding: 35px 45px 20px 45px;
+  
+  color: black;
+  background-color: white;
+
+  font-size: 1.3rem;
+  line-height: 1.6rem;
+  text-align: center;
+
+  transform: translate(-50%, -50%);
+}
+
+dialog > div {
+  display: flex;
+  gap: 10px;
+
+  margin-top: 35px;
+}
+
+dialog > div > button {
+  flex: 1;
+  padding-top: 7px;
+  padding-bottom: 7px;
+
+  background-color: white;
+  color: black;
+
+  font-size: 1.1rem;
+
+  border-radius: 0;
+  border: 1px solid black;
+
+  cursor: pointer;
+}
+
+#confirm {
+  background-color: red;
+  color: white;
+  border: 1px solid red;
 }
