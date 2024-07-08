@@ -6,7 +6,7 @@ const formIndex = (function () {
   const form = document.querySelector(".book-form");
   const page = document.querySelector("#pages");
 
-  const onlyNum = /^[0-9]+$/;
+  const onlyNum = /^(?!0)\d+$/;
 
   const formEH = (event) => {
     event.preventDefault();
@@ -28,7 +28,10 @@ const formIndex = (function () {
 
   const pageEH = (event) => {
     if (!onlyNum.test(event.target.value)) {
-      event.target.value = event.target.value.replace(/[^0-9]/g, "");
+      event.target.value = event.target.value.substring(
+        0,
+        event.target.value.length - 1
+      );
     }
   };
 

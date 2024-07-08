@@ -44,15 +44,15 @@
           <form class="book-form">
             <div class="title-field">
               <label for="title">Title</label>
-              <input name="title" id="title" type="text" />
+              <input name="title" id="title" type="text" required />
             </div>
             <div class="author-field">
               <label for="author">Author</label>
-              <input name="author" id="author" type="text" />
+              <input name="author" id="author" type="text" required />
             </div>
             <div class="desc-field">
               <label for="desc">Description</label>
-              <textarea name="desc" id="desc" rows="8"></textarea>
+              <textarea name="desc" id="desc" rows="8" required></textarea>
             </div>
             <div class="extra-fields">
               <div class="pages-field">
@@ -62,11 +62,12 @@
                   type="text"
                   pattern="\d{1,4}"
                   maxlength="4"
+                  required
                 />
                 <label for="pages"><p>Pages</p></label>
               </div>
               <div class="completed-field">
-                <input name="completed" id="completed" type="checkbox" />
+                <input name="completed" id="completed" type="checkbox" required />
                 <label for="completed"><p>Completed</p></label>
               </div>
             </div>
