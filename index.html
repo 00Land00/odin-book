@@ -56,7 +56,13 @@
             </div>
             <div class="extra-fields">
               <div class="pages-field">
-                <input name="pages" id="pages" type="text" pattern="[0-9]{4}" maxlength="4" />
+                <input
+                  name="pages"
+                  id="pages"
+                  type="text"
+                  pattern="\d{1,4}"
+                  maxlength="4"
+                />
                 <label for="pages"><p>Pages</p></label>
               </div>
               <div class="completed-field">
@@ -68,7 +74,7 @@
           </form>
         </div>
         <div class="book-section hidden">
-          <img src="media/plus-circle.svg" alt="add button" class="add-btn">
+          <img src="media/plus-circle.svg" alt="add button" class="add-btn" />
           <div class="book-header">
             <div>
               <h1 class="book-title">Book Title</h1>
@@ -96,4 +102,9 @@
       </div>
     </div>
   </body>
+
+  <script src="js/index.js"></script>
+  <script src="js/bookIndex.js"></script>
+  <script src="js/libraryIndex.js"></script>
+  <script src="js/formIndex.js"></script>
 </html>
