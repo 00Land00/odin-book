@@ -25,8 +25,13 @@ const libraryIndex = (function () {
   let curSidebarProgress = null;
 
   module.addBook = (bookObj) => {
-    // for now we will just append it at the end. will want to sort it in alphabetical order though
-    books.push(bookObj);
+    const index = books.findIndex(book => book.title.localeCompare(bookObj.title) > 0);
+    if (index === -1) {
+      books.push(bookObj);
+    } else {
+      books.splice(index, 0, bookObj);
+    }
+
     bookObj.sidebarHTML.addEventListener("click", sidebarClickEH);
     displaySidebar();
   };
