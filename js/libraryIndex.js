@@ -14,6 +14,10 @@ const libraryIndex = (function () {
   const progressBar = document.querySelector(".progress-bar");
   const completeCheckbox = document.querySelector(".complete-checkbox");
 
+  const deleteModal = document.querySelector(".delete-modal");
+  const confirmDelete = document.querySelector("#confirm");
+  const cancelDelete = document.querySelector("#cancel");
+
   const addBtn = document.querySelector(".add-btn");
   const delBtn = document.querySelector(".book-del");
 
@@ -73,16 +77,24 @@ const libraryIndex = (function () {
     index.toggleForm(false);
   };
 
+  const showModal = () => {
+    deleteModal.showModal();
+  }
+
   const deleteEH = () => {
-    // TODO: add modal
     books.splice(curBook.dataId, 1)[0];
     curBook.sidebarHTML.remove();
     curBook.sidebarHTML = null;
     curBook = null;
     curSidebarProgress = null;
 
+    deleteModal.close();
     index.toggleForm(true);
   };
+
+  const cancelDeleteEH = () => {
+    deleteModal.close();
+  }
 
   const formBtnEH = () => {
     curBook = null;
@@ -102,7 +114,9 @@ const libraryIndex = (function () {
   window.addEventListener("DOMContentLoaded", () => {
     displaySidebar();
     addBtn.addEventListener("click", formBtnEH);
-    delBtn.addEventListener("click", deleteEH);
+    delBtn.addEventListener("click", showModal);
+    confirmDelete.addEventListener("click", deleteEH);
+    cancelDelete.addEventListener("click", cancelDeleteEH);
     progressBar.addEventListener("input", updateProgressVal);
     completeCheckbox.addEventListener("change", checkboxEH);
   });
