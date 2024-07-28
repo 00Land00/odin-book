@@ -61,6 +61,11 @@ input, #desc {
   background-color: black;
 }
 
+input[type="text"]:focus, #desc:focus, #pages:focus {
+  background-color: white;
+  color: black;
+}
+
 input[type="text"] {
   height: 50px;
   font-weight: 200;
