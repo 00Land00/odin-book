@@ -10,9 +10,11 @@ const index = (function () {
     if (showForm) {
       if (formSection.classList.contains("hidden")) {
         formSection.classList.remove("hidden");
+        formSection.style.opacity = "100%";
       }
       if (!bookSection.classList.contains("hidden")) {
         bookSection.classList.add("hidden");
+        bookSection.style.opacity = "0%";
       }
 
       return;
@@ -20,9 +22,11 @@ const index = (function () {
 
     if (!formSection.classList.contains("hidden")) {
       formSection.classList.add("hidden");
+      formSection.style.opacity = "0%";
     }
     if (bookSection.classList.contains("hidden")) {
       bookSection.classList.remove("hidden");
+      bookSection.style.opacity = "100%";
     }
   };
 

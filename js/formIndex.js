@@ -14,14 +14,14 @@ const formIndex = (function () {
     const formData = new FormData(event.target);
     const formValues = Object.fromEntries(formData.entries());
 
-    const newBook = bookIndex.createBook(
+    const newBook = BookService.createBook(
       formValues.title,
       formValues.author,
       formValues.desc,
       formValues.pages,
       formValues.completed ? true : false
     );
-    libraryIndex.addBook(newBook);
+    sidebarIndex.addSidebar(newBook);
 
     event.target.reset();
   };

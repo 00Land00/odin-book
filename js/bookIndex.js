@@ -3,116 +3,118 @@ const bookIndex = (function () {
 
   const module = {};
 
-  /*
-  const booksHtml = document.querySelector(".book");
-  module.bookHeight = 300;
-  const halfBookHeight = module.bookHeight / 2;
+  module.curDataId = null;
 
-  let nextId = 0;
+  const bookTitle = document.querySelector(".book-header .book-title");
+  const bookAuthor = document.querySelector(".book-author");
+  const bookDesc = document.querySelector(".book-desc");
+  const progressValue = document.querySelector(".progress-value");
+  const progressBar = document.querySelector(".progress-bar");
+  const completeCheckbox = document.querySelector(".complete-checkbox");
 
-  const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
-  const computeBaseHeight = (pages) => {
-    let mult = 2;
-    const base = 25; // px
+  module.resetBookSection = () => {
+    bookTitle.innerHTML = ``;
+    bookAuthor.innerHTML = ``;
+    bookDesc.innerHTML = ``;
 
-    mult += Math.floor(pages / 100);
-    mult = clamp(mult, 2, 11);
-    return base * mult;
+    progressValue.innerHTML = ``;
+    progressBar.value = 0;
+    progressBar.max = 1;
+
+    completeCheckbox.checked = false;
   };
 
-  module.toggleBook = (book, toggleVal) => {
-    const halfVH = window.innerHeight / 2;
-    const bookY = book.getBoundingClientRect().y;
-    const halfBooksHeight = libraryIndex.booksHeight / 2;
-    const excess = window.innerHeight - libraryIndex.booksHeight;
+  const updateProgress = () => {
+    const book = BookService.getBook(module.curDataId);
+    book.curPage = progressBar.value;
+    const progressPercent = BookService.getBook(
+      module.curDataId
+    ).calcProgress();
+    progressValue.innerHTML = `${progressBar.value} / ${progressBar.max}`;
+    progressValue.style.left = `calc(${progressPercent}% + (${
+      17 - progressPercent * 0.3
+    }px))`;
+    completeCheckbox.checked = progressBar.value === progressBar.max;
 
-    let offsetVal = `calc((${halfVH}px - (${bookY}px + ${halfBookHeight}px))`;
-    if (libraryIndex.beyondWindow) {
-      offsetVal += ` - ${halfBooksHeight}px)`;
-      offsetVal = toggleVal ? offsetVal : `-50%`;
-    } else {
-      offsetVal += ` + ${scrollOffset}px)`;
-      libraryIndex.scrollOffset = clamp(halfVH - (bookY + halfBookHeight) + scrollOffset, excess, 0);
+    sidebarIndex.updateProgress();
+  };
+
+  const checkboxEH = () => {
+    BookService.updateBook(
+      module.curDataId,
+      progressBar.value,
+      completeCheckbox.checked ? true : false
+    );
+    if (completeCheckbox.checked) {
+      BookService.updateBook(module.curDataId, progressBar.max, true);
+      progressBar.value = progressBar.max;
+      updateProgress();
     }
-
-    booksHtml.style.setProperty("--offset-val", offsetVal);
   };
 
-  function Book(title, pages) {
-    this.id = nextId++;
-    this.title = title;
-    this.pages = pages;
-    this.baseH = computeBaseHeight(pages);
-  }
-
-  Book.prototype.bookEH = function() {
-    const book = libraryIndex.getHTML(this.id);
-    
-    if (libraryIndex.curSelected === this.id) {
-      libraryIndex.curSelected = null;
-      book.classList.remove("expand");
-      libraryIndex.booksHeight -= module.bookHeight - this.baseH;
-      module.toggleBook(book, false);
+  module.displayBook = function () {
+    const book = BookService.getBook(module.curDataId);
+    if (!book) {
       return;
     }
 
-    libraryIndex.unselectCur();
-    libraryIndex.curSelected = this.id;
-    book.classList.add("expand");
-    libraryIndex.booksHeight += module.bookHeight - this.baseH;
-    toggleBook(book, true);
+    bookTitle.innerHTML = `${book.title}`;
+    bookAuthor.innerHTML = `${book.author}`;
+    bookDesc.innerHTML = `${book.desc}`;
+
+    if (book.hasCompleted) {
+      book.curPage = book.totalPages;
+    }
+
+    progressValue.innerHTML = `${book.curPage} / ${book.totalPages}`;
+    progressBar.max = book.totalPages;
+    progressBar.value = book.curPage;
+    updateProgress();
+
+    completeCheckbox.checked = book.curPage === book.totalPages;
   };
 
-  module.createBook = (title, pages) => {
-    const book = new Book(title, pages);
-    return book;
-  }
+  const deleteBtn = document.querySelector(".book-del");
+  const deleteModal = document.querySelector(".delete-modal");
+  const confirmDelete = document.querySelector("#confirm");
+  const cancelDelete = document.querySelector("#cancel");
 
-  return module;
-})();
-  */
-  let nextId = 0;
-
-  const sidebarHTMLConstructor = (dataId, bookTitle, bookProgress) => {
-    const container = document.createElement("div");
-    container.className = "book";
-    container.setAttribute("data-id", `${dataId}`);
-
-    const pTitle = document.createElement("p");
-    pTitle.className = "book-title";
-    pTitle.textContent = `${bookTitle}`;
-
-    const pProgress = document.createElement("p");
-    pProgress.className = "progress";
-    pProgress.textContent = `${bookProgress}%`;
-
-    container.appendChild(pTitle);
-    container.appendChild(pProgress);
-
-    return container;
+  const showDeleteModal = () => {
+    deleteModal.showModal();
   };
 
-  function Book(title, author, desc, totalPages, hasCompleted) {
-    this.dataId = nextId++;
-
-    this.title = title;
-    this.author = author;
-    this.desc = desc;
-    this.curPage = 0;
-    this.totalPages = totalPages;
-    this.hasCompleted = hasCompleted;
-
-    this.sidebarHTML = sidebarHTMLConstructor(this.dataId, this.title, 0);
-  }
-
-  Book.prototype.calcProgress = function() {
-    const progress = (this.curPage / this.totalPages) * 100;
-    return Math.round(progress);
-  }
-
-  module.createBook = function (title, author, desc, totalPages, hasCompleted) {
-    return new Book(title, author, desc, totalPages, hasCompleted);
+  const hideDeleteModal = () => {
+    deleteModal.close();
   };
+
+  const removeBookEH = () => {
+    BookService.removeBook(module.curDataId);
+    sidebarIndex.removeSidebar();
+    module.resetBookSection();
+    module.curDataId = null;
+
+    hideDeleteModal();
+    index.toggleForm(true);
+  };
+
+  const newBookBtn = document.querySelector(".add-btn");
+
+  const newBookBtnEH = () => {
+    const sidebar = BookService.getBook(bookIndex.curDataId).sidebarObj;
+    sidebar.clickEH();
+  };
+
+  window.addEventListener("DOMContentLoaded", () => {
+    deleteBtn.addEventListener("click", showDeleteModal);
+    confirmDelete.addEventListener("click", removeBookEH);
+    cancelDelete.addEventListener("click", hideDeleteModal);
+
+    progressBar.addEventListener("input", updateProgress);
+
+    completeCheckbox.addEventListener("change", checkboxEH);
+
+    newBookBtn.addEventListener("click", newBookBtnEH);
+  });
 
   return module;
 })();
