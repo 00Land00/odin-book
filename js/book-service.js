@@ -5,94 +5,6 @@ const BookService = (function () {
 
   const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
 
-  // temp
-  // const sample = [
-  //   {
-  //     title: "T",
-  //     author: "T",
-  //     desc: "T",
-  //     totalPages: "123",
-  //     hasCompleted: false,
-  //   },
-  //   {
-  //     title: "T",
-  //     author: "T",
-  //     desc: "T",
-  //     totalPages: "234",
-  //     hasCompleted: false,
-  //   },
-  //   {
-  //     title: "T",
-  //     author: "T",
-  //     desc: "T",
-  //     totalPages: "345",
-  //     hasCompleted: false,
-  //   },
-  //   {
-  //     title: "T",
-  //     author: "T",
-  //     desc: "T",
-  //     totalPages: "123",
-  //     hasCompleted: false,
-  //   },
-  //   {
-  //     title: "T",
-  //     author: "T",
-  //     desc: "T",
-  //     totalPages: "234",
-  //     hasCompleted: false,
-  //   },
-  //   {
-  //     title: "T",
-  //     author: "T",
-  //     desc: "T",
-  //     totalPages: "345",
-  //     hasCompleted: false,
-  //   },
-  //   {
-  //     title: "T",
-  //     author: "T",
-  //     desc: "T",
-  //     totalPages: "123",
-  //     hasCompleted: false,
-  //   },
-  //   {
-  //     title: "T",
-  //     author: "T",
-  //     desc: "T",
-  //     totalPages: "234",
-  //     hasCompleted: false,
-  //   },
-  //   {
-  //     title: "T",
-  //     author: "T",
-  //     desc: "T",
-  //     totalPages: "345",
-  //     hasCompleted: false,
-  //   },
-  //   {
-  //     title: "T",
-  //     author: "T",
-  //     desc: "T",
-  //     totalPages: "123",
-  //     hasCompleted: false,
-  //   },
-  //   {
-  //     title: "T",
-  //     author: "T",
-  //     desc: "T",
-  //     totalPages: "234",
-  //     hasCompleted: false,
-  //   },
-  //   {
-  //     title: "T",
-  //     author: "T",
-  //     desc: "T",
-  //     totalPages: "345",
-  //     hasCompleted: false,
-  //   },
-  // ];
-
   const books = {
     nextId: 0,
     arr: [],
@@ -196,7 +108,6 @@ const BookService = (function () {
         this.html.querySelector(".progress").style.setProperty("opacity", 0);
         sidebarIndex.totalHeight -= this.diffH();
 
-        bookIndex.resetBookSection();
         bookIndex.curDataId = null;
         index.toggleForm(true);
         return;
@@ -251,20 +162,6 @@ const BookService = (function () {
     book.curPage = curPage;
     book.hasCompleted = hasCompleted;
   };
-
-  // temp
-  // window.addEventListener("DOMContentLoaded", () => {
-  //   sample.forEach((obj) => {
-  //     const book = module.createBook(
-  //       obj.title,
-  //       obj.author,
-  //       obj.desc,
-  //       obj.totalPages,
-  //       obj.hasCompleted
-  //     );
-  //     sidebarIndex.addSidebar(book);
-  //   });
-  // });
 
   return module;
 })();

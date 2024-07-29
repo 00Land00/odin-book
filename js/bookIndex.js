@@ -91,7 +91,6 @@ const bookIndex = (function () {
   const removeBookEH = () => {
     BookService.removeBook(module.curDataId);
     sidebarIndex.removeSidebar();
-    module.resetBookSection();
     module.curDataId = null;
 
     hideDeleteModal();

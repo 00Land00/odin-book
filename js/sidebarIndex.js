@@ -39,8 +39,8 @@ const sidebarIndex = (function() {
     const bg = document.createElement("div");
     bg.className = "book-background";
     const hue = stringToHue(book.title);
-    const color1 = `hsl(${hue + book.totalPages}, 100%, 70%)`;
-    const color2 = `hsl(${(hue + book.totalPages + 180) % 360}, 100%, 70%)`;
+    const color1 = `hsl(${hue + parseInt(book.totalPages)}, 100%, 70%)`;
+    const color2 = `hsl(${(hue + parseInt(book.totalPages) + 180) % 360}, 100%, 70%)`;
     bg.style.setProperty("background", `linear-gradient(to bottom right, ${color1}, ${color2})`);
 
     const pTitle = document.createElement("p");

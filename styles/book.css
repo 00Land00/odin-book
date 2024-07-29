@@ -3,7 +3,7 @@
   min-height: 100vh;
 
   opacity: 100%;
-  transition: all 1s linear;
+  transition: all 0.25s linear;
 }
 
 .add-btn {
@@ -34,6 +34,14 @@
   font-size: 3rem;
 }
 
+.book-header .book-title, .book-header .book-author {
+  max-width: 700px;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .book-header img {
   width: 25px;
   height: 25px;
@@ -45,6 +53,7 @@
 
 .book-body {
   padding-top: 300px;
+  margin-bottom: 100px;
 }
 
 .book-desc {

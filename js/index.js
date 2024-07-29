@@ -9,11 +9,9 @@ const index = (function () {
   module.toggleForm = (showForm) => {
     if (showForm) {
       if (formSection.classList.contains("hidden")) {
-        formSection.classList.remove("hidden");
         formSection.style.opacity = "100%";
       }
       if (!bookSection.classList.contains("hidden")) {
-        bookSection.classList.add("hidden");
         bookSection.style.opacity = "0%";
       }
 
@@ -21,14 +19,25 @@ const index = (function () {
     }
 
     if (!formSection.classList.contains("hidden")) {
-      formSection.classList.add("hidden");
       formSection.style.opacity = "0%";
     }
     if (bookSection.classList.contains("hidden")) {
-      bookSection.classList.remove("hidden");
       bookSection.style.opacity = "100%";
     }
   };
+
+  window.addEventListener("DOMContentLoaded", () => {
+    formSection.addEventListener("transitionend", () => {
+      formSection.classList.toggle("hidden");
+      bookSection.classList.toggle("hidden");
+    });
+
+    bookSection.addEventListener("transitionend", () => {
+      bookSection.classList.toggle("hidden");
+      formSection.classList.toggle("hidden");
+      bookIndex.resetBookSection();
+    });
+  });
 
   return module;
 })();
