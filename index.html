@@ -11,6 +11,117 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/sidebar.css" />
+    <link rel="stylesheet" href="styles/form.css" />
+    <link rel="stylesheet" href="styles/book.css" />
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <div class="books move">
+          <div class="book">
+            <p class="book-title">1984</p>
+            <p class="progress">16%</p>
+          </div>
+          <div class="book">
+            <p class="book-title">A Little Life</p>
+            <p class="progress">92%</p>
+          </div>
+          <div class="book">
+            <p class="book-title">Legacies of Violence</p>
+            <p class="progress">100%</p>
+          </div>
+          <div class="book">
+            <p class="book-title">The Outsider</p>
+            <p class="progress">74%</p>
+          </div>
+        </div>
+      </div>
+      <div class="main">
+        <div class="form-section">
+          <h1>Your Personal Library</h1>
+          <form class="book-form">
+            <div class="title-field">
+              <label for="title">Title</label>
+              <input name="title" id="title" type="text" required />
+            </div>
+            <div class="author-field">
+              <label for="author">Author</label>
+              <input name="author" id="author" type="text" required />
+            </div>
+            <div class="desc-field">
+              <label for="desc">Description</label>
+              <textarea name="desc" id="desc" rows="8" required>
+Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat quam laborum a, dolore nisi magni, optio praesentium, deleniti nostrum quibusdam quas. Consequatur, atque ducimus maiores optio nulla tempore vero amet!</textarea
+              >
+            </div>
+            <div class="extra-fields">
+              <div class="pages-field">
+                <input
+                  name="pages"
+                  id="pages"
+                  type="text"
+                  pattern="\d{1,4}"
+                  maxlength="4"
+                  required
+                />
+                <label for="pages"><p>Pages</p></label>
+              </div>
+              <div class="completed-field">
+                <input name="completed" id="completed" type="checkbox" />
+                <label for="completed"><p>Completed</p></label>
+              </div>
+            </div>
+            <button id="submit" type="submit">Submit</button>
+          </form>
+        </div>
+        <div class="book-section hidden">
+          <img src="media/plus-circle.svg" alt="add button" class="add-btn" />
+          <div class="book-header">
+            <div>
+              <h1 class="book-title">Book Title</h1>
+              <img src="media/delete.svg" alt="delete" class="book-del" />
+            </div>
+            <p class="book-author">Author</p>
+          </div>
+          <div class="book-body">
+            <div class="book-desc">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat
+              quam laborum a, dolore nisi magni, optio praesentium, deleniti
+              nostrum quibusdam quas. Consequatur, atque ducimus maiores optio
+              nulla tempore vero amet!
+            </div>
+            <div class="progress-section">
+              <input
+                type="range"
+                class="progress-bar"
+                min="0"
+                max="100"
+                value="0"
+              />
+              <output class="progress-value"></output>
+            </div>
+            <div class="completed-section">
+              <input type="checkbox" class="complete-checkbox" id="complete" />
+              <label for="complete">Completed</label>
+            </div>
+          </div>
+          <dialog class="delete-modal">
+            <p>Are you sure you want to delete this book from your library?</p>
+            <div>
+              <button type="button" id="confirm">Yes</button>
+              <button type="button" id="cancel">No</button>
+            </div>
+          </dialog>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="js/book-service.js"></script>
+  <script src="js/index.js"></script>
+  <script src="js/bookIndex.js"></script>
+  <script src="js/sidebarIndex.js"></script>
+  <script src="js/formIndex.js"></script>
 </html>

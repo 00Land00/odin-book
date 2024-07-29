@@ -1,0 +1,87 @@
+.sidebar {
+  height: 100%;
+  width: 250px;
+  margin-left: 50px;
+  overflow: hidden;
+
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+}
+
+.books {
+  --offset-val: -50%;
+
+  margin-top: 50vh;
+  
+  text-align: center;
+  transition: all 0.25s linear;
+  cursor: pointer;
+}
+
+.move {
+  transform: translateY(var(--offset-val));
+}
+
+.book {
+  --base-height: 100px;
+  --expand-height: 300px;
+
+  position: relative;  
+  padding: 30px;
+  height: var(--base-height);
+
+  border-bottom: 1px solid white;
+  transition: all 0.5s ease-in-out 0.25s;
+}
+
+.book:first-child {
+  border-top: 1px solid white;
+}
+
+.expand {
+  height: var(--expand-height);
+}
+
+.book .book-title {
+  position: relative;
+  top: 50%;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  transform: translate(0, -50%);
+}
+
+.progress {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-bottom: 10px;
+
+  transition: opacity 0.5s ease-in-out 0.25s;
+  transform: translate(-50%, 0);
+  opacity: 0;
+}
+
+.book-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out 0.25s;
+}
+
+.special {
+  position: fixed;
+  height: 300px;
+  width: 250px;
+  top: 50vh;
+  margin-left: 50px;
+  
+  background-color: red;
+
+  transform: translate(0, -50%);
+}
