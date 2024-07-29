@@ -23,9 +23,25 @@ const sidebarIndex = (function() {
     module.sidebarHTML.style.setProperty("--offset-val", 0);
   };
 
+  const stringToHue = (str) => {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+
+    return hash % 360;
+  }
+
   const createSidebarHTML = (book) => {
     const sidebar = document.createElement("div");
     sidebar.className = "book";
+
+    const bg = document.createElement("div");
+    bg.className = "book-background";
+    const hue = stringToHue(book.title);
+    const color1 = `hsl(${hue + book.totalPages}, 100%, 70%)`;
+    const color2 = `hsl(${(hue + book.totalPages + 180) % 360}, 100%, 70%)`;
+    bg.style.setProperty("background", `linear-gradient(to bottom right, ${color1}, ${color2})`);
 
     const pTitle = document.createElement("p");
     pTitle.className = "book-title";
@@ -35,6 +51,7 @@ const sidebarIndex = (function() {
     pProgress.className = "progress";
     pProgress.textContent = `${book.calcProgress()}%`;
 
+    sidebar.appendChild(bg);
     sidebar.appendChild(pTitle);
     sidebar.appendChild(pProgress);
 
@@ -81,7 +98,7 @@ const sidebarIndex = (function() {
   };
 
   module.updateProgress = () => {
-    const book = BookService.getBook(module.curDataId);
+    const book = BookService.getBook(bookIndex.curDataId);
     if (!book) {
       return;
     }
@@ -126,7 +143,7 @@ const sidebarIndex = (function() {
   }
 
   window.addEventListener("DOMContentLoaded", () => {
-    // module.sidebarHTML.innerHTML = ``;
+    module.sidebarHTML.innerHTML = ``;
 
     module.sidebarHTML.addEventListener("wheel", scrollEH);
   });
