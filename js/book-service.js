@@ -6,92 +6,92 @@ const BookService = (function () {
   const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
 
   // temp
-  const sample = [
-    {
-      title: "T",
-      author: "T",
-      desc: "T",
-      totalPages: "123",
-      hasCompleted: false,
-    },
-    {
-      title: "T",
-      author: "T",
-      desc: "T",
-      totalPages: "234",
-      hasCompleted: false,
-    },
-    {
-      title: "T",
-      author: "T",
-      desc: "T",
-      totalPages: "345",
-      hasCompleted: false,
-    },
-    {
-      title: "T",
-      author: "T",
-      desc: "T",
-      totalPages: "123",
-      hasCompleted: false,
-    },
-    {
-      title: "T",
-      author: "T",
-      desc: "T",
-      totalPages: "234",
-      hasCompleted: false,
-    },
-    {
-      title: "T",
-      author: "T",
-      desc: "T",
-      totalPages: "345",
-      hasCompleted: false,
-    },
-    {
-      title: "T",
-      author: "T",
-      desc: "T",
-      totalPages: "123",
-      hasCompleted: false,
-    },
-    {
-      title: "T",
-      author: "T",
-      desc: "T",
-      totalPages: "234",
-      hasCompleted: false,
-    },
-    {
-      title: "T",
-      author: "T",
-      desc: "T",
-      totalPages: "345",
-      hasCompleted: false,
-    },
-    {
-      title: "T",
-      author: "T",
-      desc: "T",
-      totalPages: "123",
-      hasCompleted: false,
-    },
-    {
-      title: "T",
-      author: "T",
-      desc: "T",
-      totalPages: "234",
-      hasCompleted: false,
-    },
-    {
-      title: "T",
-      author: "T",
-      desc: "T",
-      totalPages: "345",
-      hasCompleted: false,
-    },
-  ];
+  // const sample = [
+  //   {
+  //     title: "T",
+  //     author: "T",
+  //     desc: "T",
+  //     totalPages: "123",
+  //     hasCompleted: false,
+  //   },
+  //   {
+  //     title: "T",
+  //     author: "T",
+  //     desc: "T",
+  //     totalPages: "234",
+  //     hasCompleted: false,
+  //   },
+  //   {
+  //     title: "T",
+  //     author: "T",
+  //     desc: "T",
+  //     totalPages: "345",
+  //     hasCompleted: false,
+  //   },
+  //   {
+  //     title: "T",
+  //     author: "T",
+  //     desc: "T",
+  //     totalPages: "123",
+  //     hasCompleted: false,
+  //   },
+  //   {
+  //     title: "T",
+  //     author: "T",
+  //     desc: "T",
+  //     totalPages: "234",
+  //     hasCompleted: false,
+  //   },
+  //   {
+  //     title: "T",
+  //     author: "T",
+  //     desc: "T",
+  //     totalPages: "345",
+  //     hasCompleted: false,
+  //   },
+  //   {
+  //     title: "T",
+  //     author: "T",
+  //     desc: "T",
+  //     totalPages: "123",
+  //     hasCompleted: false,
+  //   },
+  //   {
+  //     title: "T",
+  //     author: "T",
+  //     desc: "T",
+  //     totalPages: "234",
+  //     hasCompleted: false,
+  //   },
+  //   {
+  //     title: "T",
+  //     author: "T",
+  //     desc: "T",
+  //     totalPages: "345",
+  //     hasCompleted: false,
+  //   },
+  //   {
+  //     title: "T",
+  //     author: "T",
+  //     desc: "T",
+  //     totalPages: "123",
+  //     hasCompleted: false,
+  //   },
+  //   {
+  //     title: "T",
+  //     author: "T",
+  //     desc: "T",
+  //     totalPages: "234",
+  //     hasCompleted: false,
+  //   },
+  //   {
+  //     title: "T",
+  //     author: "T",
+  //     desc: "T",
+  //     totalPages: "345",
+  //     hasCompleted: false,
+  //   },
+  // ];
 
   const books = {
     nextId: 0,
@@ -119,7 +119,7 @@ const BookService = (function () {
     const base = 25;
 
     mult += Math.floor(pages / 100);
-    mult = clamp(mult, 2, 11);
+    mult = clamp(mult, 2, 6);
     return base * mult;
   };
 
@@ -175,12 +175,16 @@ const BookService = (function () {
         const sidebar = BookService.getBook(bookIndex.curDataId).sidebarObj;
         sidebarIndex.withinWindow ? sidebar.toggleBookWithin(false) : ``;
         sidebar.html.classList.remove("expand");
+        sidebar.html.querySelector(".book-background").style.setProperty("opacity", 0);
+        sidebar.html.querySelector(".progress").style.setProperty("opacity", 0);
         sidebarIndex.totalHeight -= sidebar.diffH();
 
         sidebarIndex.withinWindow
           ? this.toggleBookWithin(true)
           : this.toggleBookBeyond();
         this.html.classList.add("expand");
+        this.html.querySelector(".book-background").style.setProperty("opacity", 0.75);
+        this.html.querySelector(".progress").style.setProperty("opacity", 1);
         sidebarIndex.totalHeight += this.diffH();
       } else {
         sidebarIndex.focusedOn = false;
@@ -188,6 +192,8 @@ const BookService = (function () {
           ? this.toggleBookWithin(false)
           : this.toggleBookBeyond();
         this.html.classList.remove("expand");
+        this.html.querySelector(".book-background").style.setProperty("opacity", 0);
+        this.html.querySelector(".progress").style.setProperty("opacity", 0);
         sidebarIndex.totalHeight -= this.diffH();
 
         bookIndex.resetBookSection();
@@ -201,6 +207,8 @@ const BookService = (function () {
         ? this.toggleBookWithin(true)
         : this.toggleBookBeyond();
       this.html.classList.add("expand");
+      this.html.querySelector(".book-background").style.setProperty("opacity", 0.75);
+      this.html.querySelector(".progress").style.setProperty("opacity", 1);
       sidebarIndex.totalHeight += this.diffH();
     }
 
@@ -245,18 +253,18 @@ const BookService = (function () {
   };
 
   // temp
-  window.addEventListener("DOMContentLoaded", () => {
-    sample.forEach((obj) => {
-      const book = module.createBook(
-        obj.title,
-        obj.author,
-        obj.desc,
-        obj.totalPages,
-        obj.hasCompleted
-      );
-      sidebarIndex.addSidebar(book);
-    });
-  });
+  // window.addEventListener("DOMContentLoaded", () => {
+  //   sample.forEach((obj) => {
+  //     const book = module.createBook(
+  //       obj.title,
+  //       obj.author,
+  //       obj.desc,
+  //       obj.totalPages,
+  //       obj.hasCompleted
+  //     );
+  //     sidebarIndex.addSidebar(book);
+  //   });
+  // });
 
   return module;
 })();

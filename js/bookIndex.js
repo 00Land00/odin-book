@@ -27,6 +27,7 @@ const bookIndex = (function () {
   const updateProgress = () => {
     const book = BookService.getBook(module.curDataId);
     book.curPage = progressBar.value;
+    book.hasCompleted = progressBar.value === progressBar.max;
     const progressPercent = BookService.getBook(
       module.curDataId
     ).calcProgress();
@@ -34,7 +35,7 @@ const bookIndex = (function () {
     progressValue.style.left = `calc(${progressPercent}% + (${
       17 - progressPercent * 0.3
     }px))`;
-    completeCheckbox.checked = progressBar.value === progressBar.max;
+    completeCheckbox.checked = book.hasCompleted;
 
     sidebarIndex.updateProgress();
   };
